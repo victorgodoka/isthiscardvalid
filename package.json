@@ -1,0 +1,12 @@
+{
+  "name": "isthisvalidinbrazil",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "watch": "npx tailwindcss -i ./input.css -o ./css/style.css --watch"
+  }
+}
