@@ -2,7 +2,7 @@
   const cardname = document.querySelector("#cardname")
   const form = document.querySelector("#form")
   const list = document.querySelector("#list")
-  const inValidSets = ["Age of Overlord", "25th Anniversary Tin: Dueling Heroes Mega Pack", "Phantom Nightmare", "Valiant Smashers"]
+  const inValidSets = ["Age of Overlord", "Phantom Nightmare", "Valiant Smashers"]
 
   function checkValid (card) {
     const sets = [...new Set(card.map(c => c.set_name))]
@@ -16,8 +16,6 @@
 
   form.addEventListener("submit", e => {
     e.preventDefault();
-
-    console.log(cardname.value)
 
     fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(cardname.value)}`)
       .then(res => res.json())
