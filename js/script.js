@@ -2,7 +2,7 @@
   const cardname = document.querySelector("#cardname")
   const form = document.querySelector("#form")
   const list = document.querySelector("#list")
-  const inValidSets = ["Age of Overlord", "Phantom Nightmare", "Valiant Smashers"]
+  const inValidSets = ["Phantom Nightmare", "Valiant Smashers"]
 
   function checkValid (card) {
     const sets = [...new Set(card.map(c => c.set_name))]
