@@ -2,12 +2,12 @@
   const cardname = document.querySelector("#cardname")
   const form = document.querySelector("#form")
   const list = document.querySelector("#list")
-  const inValidSets = ["Phantom Nightmare", "Valiant Smashers"]
+  const inValidSets = ["Phantom Nightmare", "Valiant Smashers", "Structure Deck: Fire Kings"]
 
   function checkValid (card) {
+    if (!card || !Object.hasOwn(card[0], 'set_name')) return true
     const sets = [...new Set(card.map(c => c.set_name))]
     let isInvalid = false
-
     sets.forEach(set => {
       isInvalid = inValidSets.includes(set) && sets.length === 1
     });
@@ -43,10 +43,17 @@
             </tr>
         </thead>
         <tbody>
-            ${data.map(({id, name, card_prices, card_sets}, i) => `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            ${data
+              .map(
+                (
+                  { id, name, card_prices, card_sets },
+                  i
+                ) => `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
       <td class="px-6 py-4"><a href="https://yugipedia.com/wiki/${id}" target="_blank">${id}</a></td>
       <td class="px-6 py-4"><a href="https://yugipedia.com/wiki/${id}" target="_blank">${name}</a></td>
-      <td class="px-6 py-4">${[...new Set(card_sets.map(set => `<p>${set.set_name}</p>`))].join("")}</td>
+      ${card_sets && `<td class="px-6 py-4">${[
+        ...new Set(card_sets.map((set) => `<p>${set.set_name}</p>`)),
+      ].join("")}</td>`}
       <td class="px-6 py-4">${checkValid(card_sets) ? "No" : "Yes"}</td>
       <td class="px-6 py-4">
         <p>Card Market: $${card_prices[0].cardmarket_price}</p>
@@ -55,10 +62,12 @@
         <p>Amazon: $${card_prices[0].amazon_price}</p>
         <p>CoolStuffInc: $${card_prices[0].coolstuffinc_price}</p>
       </td>
-    </tr>`).join("")}
+    </tr>`
+              )
+              .join("")}
         </tbody>
     </table>
-</div>`
+</div>`;
         list.innerHTML = inside
       })
   })
