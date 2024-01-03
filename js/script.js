@@ -2,7 +2,7 @@
   const cardname = document.querySelector("#cardname")
   const form = document.querySelector("#form")
   const list = document.querySelector("#list")
-  const inValidSets = ["Phantom Nightmare", "Valiant Smashers", "Structure Deck: Fire Kings"]
+  const inValidSets = ["Phantom Nightmare", "Valiant Smashers", "Maze of Millennia"]
 
   function checkValid (card) {
     if (!card || !Object.hasOwn(card[0], 'set_name')) return true
